@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import datetime
 from pathlib import Path
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -38,12 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    #my app
+    # my app
     'expenses',
     'income',
     'authentication',
 
-    ##third party app
+    # third party app
     'rest_framework',
     'drf_yasg',
 ]
@@ -131,16 +132,16 @@ STATIC_URL = '/static/'
 AUTH_USER_MODEL = "authentication.User"
 
 
-REST_FRAMEWORK = { 
-   
+REST_FRAMEWORK = {
+
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 2,
-    'NON_FIELD_ERRORS_KEY': 'error',  
+    'NON_FIELD_ERRORS_KEY': 'error',
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        
+
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
-    
+
 }
 
 
@@ -148,7 +149,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'EMAIL_HOST_USER'
-EMAIL_HOST_PASSWORD = 'EMAIL_HOST_PASSWORD'echo "# Rest-Api-expenses-app-Django" >> README.md
+EMAIL_HOST_PASSWORD = 'EMAIL_HOST_PASSWORD'
 
 SWAGGER_SETTINGS = {
     'SECURITY_DEFINITIONS': {
@@ -159,10 +160,9 @@ SWAGGER_SETTINGS = {
         }
     }
 }
-import datetime
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=10),
     'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=1),
-    'AUTH_HEADER_TYPES': ('Bearer','jwt'),
+    'AUTH_HEADER_TYPES': ('Bearer', 'jwt'),
 }
