@@ -43,11 +43,12 @@ INSTALLED_APPS = [
     'expenses',
     'income',
     'authentication',
-
+    'userstats',
     # third party app
     'rest_framework',
     'drf_yasg',
     'corsheaders',
+   
 ]
 
 MIDDLEWARE = [
