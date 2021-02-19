@@ -44,10 +44,12 @@ INSTALLED_APPS = [
     'income',
     'authentication',
     'userstats',
+
     # third party app
     'rest_framework',
     'drf_yasg',
     'corsheaders',
+    'rest_framework_simplejwt.token_blacklist',
    
 ]
 
@@ -166,7 +168,7 @@ SWAGGER_SETTINGS = {
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=10),
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=1),
     'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=1),
     'AUTH_HEADER_TYPES': ('Bearer', 'jwt'),
 }
