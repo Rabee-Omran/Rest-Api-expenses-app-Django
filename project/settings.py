@@ -25,8 +25,11 @@ SECRET_KEY = '+!a#57o%qve*506pw5vubz6k0#*xb2vrki8c_f3gbb3rx@%i=='
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 ALLOWED_HOSTS = []
+
+#FOR CUSTOM EXCEPTION HANDLER
+# DEBUG = False
+# ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -39,13 +42,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # my app
+    # my apps
     'expenses',
     'income',
     'authentication',
     'userstats',
 
-    # third party app
+    # third party apps
     'rest_framework',
     'drf_yasg',
     'corsheaders',
@@ -58,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    #FOR DJANGO CORE HEADERS
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -135,28 +139,32 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+#CUSTOM MODEL
 AUTH_USER_MODEL = "authentication.User"
 
-
+#FOR MY REST_FRAMEWORK CONFIG
 REST_FRAMEWORK = {
 
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 2,
     'NON_FIELD_ERRORS_KEY': 'error',
+    'EXCEPTION_HANDLER': 'utils.exception_handler.custom_exception_handler',
     'DEFAULT_AUTHENTICATION_CLASSES': (
-
+        
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
 
 }
 
-
+#FOR EMAIL STUFF
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'EMAIL_HOST_USER'
 EMAIL_HOST_PASSWORD = 'EMAIL_HOST_PASSWORD'
 
+
+#FOR API DOCS
 SWAGGER_SETTINGS = {
     'SECURITY_DEFINITIONS': {
         'Bearer': {
@@ -167,10 +175,12 @@ SWAGGER_SETTINGS = {
     }
 }
 
+#FOR JWT AUTH
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=1),
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=10),
     'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=1),
     'AUTH_HEADER_TYPES': ('Bearer', 'jwt'),
 }
 
+#FOR DJANGO CORE HEADERS
 CORS_ALLOW_ALL_ORIGINS = True
