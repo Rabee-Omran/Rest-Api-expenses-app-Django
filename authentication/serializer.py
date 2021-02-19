@@ -88,6 +88,14 @@ class ResetPasswordEmailRequestSerializer(serializers.Serializer):
     class Meta:
         fields = ['email']
 
+#for frontend redirect
+# class ResetPasswordEmailRequestSerializer(serializers.Serializer):
+#     email = serializers.EmailField(min_length=2)
+
+#     redirect_url = serializers.CharField(max_length=500, required=False)
+
+#     class Meta:
+#         fields = ['email']
 
 class SetNewPasswordSerializer(serializers.Serializer):
     password = serializers.CharField(
